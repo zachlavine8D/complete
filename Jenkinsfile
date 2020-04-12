@@ -15,7 +15,7 @@ pipeline {
                  }
            stage('Build') {
                steps {
-                   sh 'mvn -B -DskipTests clean package'
+                   sh 'mvn -B -DskipTests clean'
                }
            }
            stage('Test') {
@@ -23,6 +23,11 @@ pipeline {
                    sh 'mvn test'
                }
            }
+           stage('package') {
+                          steps {
+                              sh 'mvn package'
+                          }
+                      }
            stage('deploy'){
                     docker.withRegistery('https/index.docker.io.v1/','dockerhub'){
                        def app = docker.build("${registry}:${commit_id}",'.').push()
