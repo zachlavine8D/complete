@@ -1,12 +1,23 @@
 pipeline {
    agent any
+   tools {
+       maven 'M3'
+     }
    stages {
-      stage('Hello') {
-      def mvnHome = tool 'M3'
-         steps {
-            echo 'Hello World'
-            sh 'mvn --version'
-         }
-      }
-   }
+           stage('Build') {
+               steps {
+                   sh 'mvn -B -DskipTests clean package'
+               }
+           }
+           stage('Test') {
+               steps {
+                   sh 'mvn test'
+               }
+           }
+           stage('Deliver') {
+               steps {
+                   echo "to do"
+               }
+           }
+       }
 }
