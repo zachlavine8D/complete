@@ -8,11 +8,11 @@ pipeline {
          registryCredential = 'dockerhub'
      } */
    stages {
-           stage('Preparation'){
+           /* stage('Preparation'){
                     checkout scm
                     sh "git rev-parse --short HEAD/commit-id"
                     commit_id = readFile('.git/commit-id').trim()
-                 }
+                 } */
            stage('Build') {
                steps {
                    sh 'mvn -B -DskipTests clean'
