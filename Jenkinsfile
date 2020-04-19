@@ -30,7 +30,9 @@ pipeline {
                           }
                       }
            stage('deploy') {
-                      echo 'hello'
+                       steps {
+                           echo 'Starting to build docker image'
+                       }
            }
    }
 }
