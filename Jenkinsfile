@@ -2,7 +2,7 @@ pipeline {
    agent any
    tools {
        maven 'M3'
-     }
+   }
      environment {
          registry = "zachlavine/docker-greeting-demo"
          registryCredential = 'dockerhub'
@@ -30,15 +30,7 @@ pipeline {
                           }
                       }
            stage('deploy') {
-                       steps {
-                           echo 'Starting to build docker image'
-
-                           script {
-                               docker.withRegistry('https://registry.hub.docker.com', "${registryCredential}") {
-                               def customImage = docker.build("${registry}")
-                               customImage.push()
-                           }
-                       }
-            }
-       }
+                      echo 'hello'
+           }
+   }
 }
