@@ -30,12 +30,14 @@ pipeline {
                           }
                       }
            stage('deploy') {
-                          steps {
-                                 echo 'deploy'
-                                 docker.withRegistery('https/index.docker.io.v1/',registryCredential){
-                                        def app = docker.build("${registry}",'.').push()
-                                    }
-                            }
+                       steps {
+                           echo 'Starting to build docker image'
+
+                           script {
+                               def customImage = docker.build("${registry}")
+                               //customImage.push()
+                           }
+                       }
             }
        }
 }
