@@ -35,7 +35,7 @@ pipeline {
 
                            script {
                                def customImage = docker.build("${registry}")
-                               //customImage.push()
+                               customImage.push()
                            }
                        }
             }
