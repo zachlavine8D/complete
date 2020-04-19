@@ -3,10 +3,10 @@ pipeline {
    tools {
        maven 'M3'
      }
-     /* environment {
+     environment {
          registry = "zachlavine/docker-greeting-demo"
          registryCredential = 'dockerhub'
-     } */
+     }
    stages {
            stage('Preparation'){
                     steps {
@@ -32,9 +32,9 @@ pipeline {
            stage('deploy') {
                           steps {
                                  echo 'deploy'
-                                 /* docker.withRegistery('https/index.docker.io.v1/',dockerhub){
-                                        def app = docker.build("${registry}:${commit_id}",'.').push()
-                                    } */
+                                 docker.withRegistery('https/index.docker.io.v1/',registryCredential){
+                                        def app = docker.build("${registry}",'.').push()
+                                    }
                             }
             }
        }
