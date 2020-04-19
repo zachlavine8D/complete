@@ -3,10 +3,10 @@ pipeline {
    tools {
        maven 'M3'
      }
-     environment {
+     /* environment {
          registry = "zachlavine/docker-greeting-demo"
          registryCredential = 'dockerhub'
-     }
+     } */
    stages {
            stage('Preparation'){
                     checkout scm
