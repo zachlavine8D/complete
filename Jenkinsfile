@@ -32,6 +32,12 @@ pipeline {
            stage('deploy') {
                        steps {
                            echo 'Starting to build docker image'
+                           script {
+                               docker.withRegistry('https://registry.hub.docker.com', "${registryCredential}") {
+                                   def customImage = docker.build("${registry}")
+                                   customImage.push()
+                               }
+                           }
                        }
            }
    }
