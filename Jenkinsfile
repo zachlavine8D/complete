@@ -29,9 +29,10 @@ pipeline {
                           }
                       }
            stage('deploy'){
-                    docker.withRegistery('https/index.docker.io.v1/',dockerhub){
+                        echo 'deploy'
+                    /* docker.withRegistery('https/index.docker.io.v1/',dockerhub){
                        def app = docker.build("${registry}:${commit_id}",'.').push()
-                    }
+                    } */
             }
        }
 }
