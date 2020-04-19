@@ -8,11 +8,14 @@ pipeline {
          registryCredential = 'dockerhub'
      } */
    stages {
-           /* stage('Preparation'){
-                    checkout scm
-                    sh "git rev-parse --short HEAD/commit-id"
-                    commit_id = readFile('.git/commit-id').trim()
-                 } */
+           stage('Preparation'){
+                    steps {
+                        echo 'Preparation'
+                        /* checkout scm
+                        sh "git rev-parse --short HEAD/commit-id"
+                        commit_id = readFile('.git/commit-id').trim() */
+                    }
+                 }
            stage('Build') {
                steps {
                    sh 'mvn -B -DskipTests clean'
@@ -28,11 +31,13 @@ pipeline {
                               sh 'mvn package'
                           }
                       }
-           stage('deploy'){
-                        echo 'deploy'
-                    /* docker.withRegistery('https/index.docker.io.v1/',dockerhub){
-                       def app = docker.build("${registry}:${commit_id}",'.').push()
-                    } */
+           stage('deploy') {
+                          steps {
+                                 echo 'deploy'
+                                 /* docker.withRegistery('https/index.docker.io.v1/',dockerhub){
+                                        def app = docker.build("${registry}:${commit_id}",'.').push()
+                                    } */
+                            }
             }
        }
 }
